@@ -1,8 +1,10 @@
 package com.example.photoapp.network
 
+import android.os.LimitExceededException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
