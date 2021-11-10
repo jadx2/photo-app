@@ -1,7 +1,5 @@
 package com.example.photoapp.repository
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.photoapp.database.Photo
 import com.example.photoapp.database.PhotosDatabase
 import com.example.photoapp.network.PhotosApi

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.photoapp.R
 import com.example.photoapp.databinding.FragmentOverviewBinding
 import com.example.photoapp.databinding.OverviewListItemBinding
@@ -26,11 +27,19 @@ class OverviewFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[OverviewViewModel::class.java]
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        val adapter = OverviewAdapter()
+        val adapter = OverviewAdapter(OverviewAdapter.OnClickListener {
+            viewModel.displayPhotoDetails(it)
+        })
         binding.photosGrid.adapter = adapter
         viewModel.photos.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+        viewModel.navigateToSelectedPhoto.observe(viewLifecycleOwner, {
+            if (it != null) {
+                this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
+                viewModel.displayPhotoDetailsComplete()
             }
         })
         return binding.root

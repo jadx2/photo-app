@@ -16,6 +16,10 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
     private val database = getDatabase(application)
     private val photosRepository = PhotosRepository(database)
 
+    private val _navigateToSelectedPhoto = MutableLiveData<Photo?>()
+    val navigateToSelectedPhoto: LiveData<Photo?>
+        get() = _navigateToSelectedPhoto
+
     init {
         viewModelScope.launch {
             photosRepository.fetchPhotos()
@@ -23,4 +27,12 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
     }
 
     val photos = photosRepository.photos
+
+    fun displayPhotoDetails(photo: Photo) {
+        _navigateToSelectedPhoto.value = photo
+    }
+
+    fun displayPhotoDetailsComplete() {
+        _navigateToSelectedPhoto.value = null
+    }
 }

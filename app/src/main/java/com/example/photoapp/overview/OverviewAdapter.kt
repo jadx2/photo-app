@@ -15,10 +15,13 @@ class ViewHolder(private val binding: OverviewListItemBinding) : RecyclerView.Vi
     }
 }
 
-class OverviewAdapter : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
+class OverviewAdapter(private val onClickListener: OnClickListener) : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val photo = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(photo)
+        }
         holder.bind(photo)
     }
 
@@ -26,6 +29,10 @@ class OverviewAdapter : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = OverviewListItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
+    }
+
+    class OnClickListener(val clickListener: (photo: Photo) -> Unit) {
+        fun onClick(photo: Photo) = clickListener(photo)
     }
 }
 

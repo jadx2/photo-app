@@ -8,5 +8,18 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.example.photoapp.overview.OverviewFragment"
-        android:label="@string/photo_app" />
+        android:label="@string/photo_app" >
+        <action
+            android:id="@+id/action_overviewFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.photoapp.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="selectedPhoto"
+            app:argType="com.example.photoapp.database.Photo"
+            />
+    </fragment>
 </navigation>
