@@ -10,13 +10,32 @@
 
     </data>
 
-    <ImageView
-        android:id="@+id/photo_thumbnail"
-        imageUrl="@{photo.url}"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:adjustViewBounds="true"
-        android:padding="2dp"
-        android:scaleType="centerCrop" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp">
+
+
+        <ImageView
+            android:id="@+id/photo_thumbnail"
+            imageUrl="@{photo.url}"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:adjustViewBounds="true"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            photoTitle="@{photo.title}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/photo_thumbnail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

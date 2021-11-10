@@ -1,6 +1,7 @@
 package com.example.photoapp.overview
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -27,5 +28,12 @@ fun ImageView.bindImage(imgUrl: String?) {
                     .error(R.drawable.ic_broken_image)
             )
             .into(this)
+    }
+}
+
+@BindingAdapter("photoTitle")
+fun TextView.bindText(title: String?) {
+    title?.let {
+        text = title
     }
 }
