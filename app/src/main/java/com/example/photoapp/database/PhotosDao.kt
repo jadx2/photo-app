@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface PhotosDao {
     @Insert(onConflict = REPLACE)
-    fun insert(photos: Photo)
+    suspend fun insert(photo: Photo)
 
     @Query("SELECT * from photos_table")
     fun getPhotos(): LiveData<List<Photo>>

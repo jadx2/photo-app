@@ -8,22 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.photoapp.database.Photo
 import com.example.photoapp.databinding.OverviewListItemBinding
 
-class ViewHolder(binding: OverviewListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    val photoTitle = binding.photoTitle
+class ViewHolder(private val binding: OverviewListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(photo: Photo) {
+        binding.photo = photo
+        binding.executePendingBindings()
+    }
 }
 
-class OverviewAdapter : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()){
+class OverviewAdapter : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.photoTitle.text = item.title
+        val photo = getItem(position)
+        holder.bind(photo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = OverviewListItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
-
     }
 }
 
