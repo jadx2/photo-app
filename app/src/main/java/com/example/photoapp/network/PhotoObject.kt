@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class PhotoObject(
     @SerializedName("id")
-    val id: Float,
+    val id: Int,
     @SerializedName("albumId")
-    val albumId: Float,
+    val albumId: Int,
     @SerializedName("title")
     val title: String,
     @SerializedName("url")

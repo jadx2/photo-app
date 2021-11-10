@@ -6,34 +6,21 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.photoapp.network.PhotosApi
-import kotlinx.coroutines.Dispatchers
+import com.example.photoapp.database.Photo
+import com.example.photoapp.database.getDatabase
+import com.example.photoapp.repository.PhotosRepository
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class OverviewViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _photos = MutableLiveData<String>()
-    val photos: LiveData<String>
-        get() = _photos
+    private val database = getDatabase(application)
+    private val photosRepository = PhotosRepository(database)
 
     init {
-        getPhotos()
-    }
-
-    private fun getPhotos() {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
-                    val result = PhotosApi.retrofitService.getPhotos()
-                    _photos.postValue("Success: ${result.size} photos retrieved")
-                } catch (e: Exception) {
-                    _photos.postValue("Failure: ${e.message}")
-                }
-            }
+            photosRepository.fetchPhotos()
         }
-
     }
 
+    val photos = photosRepository.photos
 }

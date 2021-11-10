@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 data class Photo(
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Float,
+    val id: Int,
     @ColumnInfo(name = "albumId")
-    val albumId: Float,
+    val albumId: Int,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "url")

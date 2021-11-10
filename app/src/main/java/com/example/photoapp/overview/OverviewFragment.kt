@@ -23,6 +23,17 @@ class OverviewFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[OverviewViewModel::class.java]
         binding.lifecycleOwner = this
         binding.overviewViewModel = viewModel
+        val adapter = OverviewAdapter()
+        binding.photosList.adapter = adapter
+        viewModel.photos.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }
