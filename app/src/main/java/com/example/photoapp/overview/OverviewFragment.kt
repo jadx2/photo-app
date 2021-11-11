@@ -27,7 +27,7 @@ class OverviewFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[OverviewViewModel::class.java]
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        val adapter = OverviewAdapter(OverviewAdapter.OnClickListener {
+        val adapter = OverviewAdapter(OnClickListener {
             viewModel.displayPhotoDetails(it)
         })
         binding.photosGrid.adapter = adapter

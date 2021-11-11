@@ -11,21 +11,23 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/photo_thumbnail"
+            android:id="@+id/photo_title"
             photoTitle="@{photo.title}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/photo_thumbnail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/photo_thumbnail"
+            imageUrl="@{photo.url}"
             android:layout_width="170dp"
             android:layout_height="170dp"
             android:adjustViewBounds="true"
