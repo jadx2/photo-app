@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.photoapp.R
 import com.example.photoapp.databinding.FragmentOverviewBinding
-import com.example.photoapp.databinding.OverviewListItemBinding
 
 class OverviewFragment : Fragment() {
 
@@ -38,10 +36,16 @@ class OverviewFragment : Fragment() {
         })
         viewModel.navigateToSelectedPhoto.observe(viewLifecycleOwner, {
             if (it != null) {
-                this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
+                this.findNavController()
+                    .navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
                 viewModel.displayPhotoDetailsComplete()
             }
         })
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            Toast.makeText(activity, "Hello", Toast.LENGTH_SHORT).show()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
         return binding.root
     }
 }
