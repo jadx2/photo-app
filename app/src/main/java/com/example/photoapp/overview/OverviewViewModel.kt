@@ -21,6 +21,10 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
         get() = _navigateToSelectedPhoto
 
     init {
+        fetchPhotos()
+    }
+
+    fun fetchPhotos() {
         viewModelScope.launch {
             photosRepository.fetchPhotos()
         }

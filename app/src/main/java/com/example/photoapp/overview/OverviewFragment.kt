@@ -42,7 +42,8 @@ class OverviewFragment : Fragment() {
             }
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(activity, "Hello", Toast.LENGTH_SHORT).show()
+            viewModel.fetchPhotos()
+//            Toast.makeText(activity, "Refreshed!", Toast.LENGTH_SHORT).show()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 
