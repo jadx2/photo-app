@@ -67,7 +67,7 @@ class OverviewAdapter(private val onClickListener: OnClickListener) :
     private fun configureViewHolder1(vh1: ViewHolder1, position: Int) {
         val photo = getItem(position)
         vh1.itemView.setOnClickListener {
-            onClickListener.onClick(photo)
+            onClickListener.onClick(position)
         }
         vh1.bind(photo)
     }
@@ -75,14 +75,14 @@ class OverviewAdapter(private val onClickListener: OnClickListener) :
     private fun configureViewHolder2(vh2: ViewHolder2, position: Int) {
         val photo = getItem(position)
         vh2.itemView.setOnClickListener {
-            onClickListener.onClick(photo)
+            onClickListener.onClick(position)
         }
         vh2.bind(photo)
     }
 }
 
-class OnClickListener(val clickListener: (photo: Photo) -> Unit) {
-    fun onClick(photo: Photo) = clickListener(photo)
+class OnClickListener(val clickListener: (position: Int) -> Unit) {
+    fun onClick(position: Int) = clickListener(position)
 }
 
 class PhotosDiffCallback : DiffUtil.ItemCallback<Photo>() {

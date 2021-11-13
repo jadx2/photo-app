@@ -18,8 +18,8 @@
         android:name="com.example.photoapp.detail.DetailFragment"
         android:label="DetailFragment">
         <argument
-            android:name="selectedPhoto"
-            app:argType="com.example.photoapp.database.Photo"
+            android:name="photoPosition"
+            app:argType="integer"
             />
     </fragment>
 </navigation>

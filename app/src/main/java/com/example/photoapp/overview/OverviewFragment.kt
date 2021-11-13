@@ -28,7 +28,7 @@ class OverviewFragment : Fragment() {
         val adapter = OverviewAdapter(OnClickListener {
             viewModel.displayPhotoDetails(it)
         })
-        binding.photosGrid.adapter = adapter
+        binding.photosView.adapter = adapter
         viewModel.photos.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
@@ -43,7 +43,6 @@ class OverviewFragment : Fragment() {
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.fetchPhotos()
-//            Toast.makeText(activity, "Refreshed!", Toast.LENGTH_SHORT).show()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 
