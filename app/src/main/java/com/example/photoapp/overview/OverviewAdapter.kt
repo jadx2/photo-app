@@ -28,6 +28,9 @@ class ViewHolder2(private val binding: OverviewListItem2Binding) :
 class OverviewAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Photo, RecyclerView.ViewHolder>(PhotosDiffCallback()) {
 
+    /***
+     * Types of views
+     */
     companion object {
         const val VIEW_TYPE_ONE = 1
         const val VIEW_TYPE_TWO = 2
@@ -64,6 +67,9 @@ class OverviewAdapter(private val onClickListener: OnClickListener) :
         }
     }
 
+    /***
+     * Helpers to set the proper viewHolders
+     */
     private fun configureViewHolder1(vh1: ViewHolder1, position: Int) {
         val photo = getItem(position)
         vh1.itemView.setOnClickListener {

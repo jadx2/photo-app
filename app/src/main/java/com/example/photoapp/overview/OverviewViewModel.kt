@@ -23,6 +23,9 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
         fetchPhotos()
     }
 
+    /***
+     * Fetches the photos from repository
+     */
     fun fetchPhotos() {
         viewModelScope.launch {
             photosRepository.fetchPhotos()

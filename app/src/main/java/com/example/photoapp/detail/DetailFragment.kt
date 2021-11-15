@@ -1,17 +1,13 @@
 package com.example.photoapp.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
 import com.example.photoapp.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -42,12 +38,19 @@ class DetailFragment : Fragment() {
             }
         })
 
+        /***
+         * Snap helper
+         */
         val layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         binding.detailView.layoutManager = layoutManager
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.detailView)
 
+        /***
+        Checks if the adapter is ready to scroll to the desire position
+         *
+          */
         adapter.isReady.observe(viewLifecycleOwner, {
             if (it == true) {
                 photoPosition?.let {

@@ -17,6 +17,9 @@ class DetailViewModel(application: Application) :
         fetchPhotos()
     }
 
+    /***
+     * Fetches the photos from database
+     */
     fun fetchPhotos() {
         viewModelScope.launch {
             photosRepository.fetchPhotos()

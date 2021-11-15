@@ -21,6 +21,9 @@ class ViewHolder(private val binding: DetailListItemBinding) :
 
 class DetailAdapter() : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
 
+    /***
+     * Verifies if the adapter is ready
+     */
     private val _isReady = MutableLiveData<Boolean?>()
     val isReady: LiveData<Boolean?>
         get() = _isReady

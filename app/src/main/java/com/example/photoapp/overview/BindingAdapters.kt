@@ -11,6 +11,9 @@ import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.request.RequestOptions
 import com.example.photoapp.R
 
+/***
+ * Binding fot the imageView
+ */
 @BindingAdapter("imageUrl")
 fun ImageView.bindImage(imgUrl: String?) {
     imgUrl?.let {
@@ -31,6 +34,9 @@ fun ImageView.bindImage(imgUrl: String?) {
     }
 }
 
+/***
+ * Binding for the photo title
+ */
 @BindingAdapter("photoTitle")
 fun TextView.bindText(title: String?) {
     title?.let {

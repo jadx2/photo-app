@@ -34,6 +34,10 @@ class OverviewFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
+
+        /***
+         * Controls navigation passing the current photo position
+         */
         viewModel.navigateToSelectedPhoto.observe(viewLifecycleOwner, {
             if (it != null) {
                 this.findNavController()
