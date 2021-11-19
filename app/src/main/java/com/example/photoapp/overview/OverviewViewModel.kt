@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.data.database.getDatabase
-import com.example.photoapp.repository.PhotosRepository
+import com.example.data.repository.PhotosRepository
 import kotlinx.coroutines.launch
 
 class OverviewViewModel(application: Application) : AndroidViewModel(application) {

@@ -15,7 +15,7 @@ private val retrofit = Retrofit
 interface ApiService {
     @GET("photos")
     suspend fun getPhotos():
-            List<PhotoObject>
+            List<com.example.domain.PhotoObject>
 }
 
 object PhotosApi {

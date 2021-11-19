@@ -1,4 +1,4 @@
-package com.example.photoapp.repository
+package com.example.data.repository
 
 import android.util.Log
 import com.example.data.database.Photo
