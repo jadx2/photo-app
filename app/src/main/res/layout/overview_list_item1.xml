@@ -7,7 +7,7 @@
 
         <variable
             name="photo"
-            type="com.example.photoapp.database.Photo" />
+            type="com.example.data.database.Photo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

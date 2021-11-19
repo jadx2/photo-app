@@ -1,4 +1,4 @@
-package com.example.photoapp.database
+package com.example.data.database
 
 import android.content.Context
 import androidx.room.Database
@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Photo::class], version = 1, exportSchema = false)
 abstract class PhotosDatabase : RoomDatabase() {
-    abstract val photosDao: PhotosDao
+    abstract fun photosDao(): PhotosDao
 }
 
 private lateinit var INSTANCE: PhotosDatabase

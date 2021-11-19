@@ -1,4 +1,4 @@
-package com.example.photoapp.database
+package com.example.data.database
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "photos_table")
-@Parcelize
 data class Photo(
     @PrimaryKey
     @ColumnInfo(name = "id")
@@ -20,6 +19,6 @@ data class Photo(
     val url: String?,
     @ColumnInfo(name = "thumbnailUrl")
     val thumbnailUrl: String?
-) : Parcelable
+)
 
 

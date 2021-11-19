@@ -1,6 +1,5 @@
 package com.example.photoapp.detail
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
@@ -8,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.photoapp.database.Photo
+import com.example.data.database.Photo
 import com.example.photoapp.databinding.DetailListItemBinding
 
 class ViewHolder(private val binding: DetailListItemBinding) :

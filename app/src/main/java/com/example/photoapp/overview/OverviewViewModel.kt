@@ -5,8 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.photoapp.database.Photo
-import com.example.photoapp.database.getDatabase
+import com.example.data.database.getDatabase
 import com.example.photoapp.repository.PhotosRepository
 import kotlinx.coroutines.launch
 

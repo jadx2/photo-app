@@ -3,7 +3,7 @@ package com.example.photoapp.detail
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.photoapp.database.getDatabase
+import com.example.data.database.getDatabase
 import com.example.photoapp.repository.PhotosRepository
 import kotlinx.coroutines.launch
 

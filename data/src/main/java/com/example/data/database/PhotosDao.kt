@@ -1,4 +1,4 @@
-package com.example.photoapp.database
+package com.example.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface PhotosDao {
     @Insert(onConflict = REPLACE)
-    suspend fun insert(photo: Photo)
+    fun insert(photo: Photo)
 
     @Query("SELECT * from photos_table")
     fun getPhotos(): LiveData<List<Photo>>

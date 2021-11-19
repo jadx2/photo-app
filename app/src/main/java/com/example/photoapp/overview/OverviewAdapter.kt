@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.photoapp.database.Photo
+import com.example.data.database.Photo
 import com.example.photoapp.databinding.OverviewListItem1Binding
 import com.example.photoapp.databinding.OverviewListItem2Binding
 

@@ -3,7 +3,6 @@ package com.example.photoapp.detail
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.photoapp.database.Photo
 
 class DetailViewModelFactory(
     private val application: Application
