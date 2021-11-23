@@ -1,12 +1,14 @@
 package com.example.photoapp.detail
 
-import com.example.data.repository.PhotosRepository
+import com.example.interactors.FetchPhotosUseCase
+import com.example.interactors.GetPhotosUseCase
 import com.example.photoapp.Factory
 
 class DetailViewModelFactory(
-    private val repository: PhotosRepository
+    private val fetchPhotosUseCase: FetchPhotosUseCase,
+    private val getPhotosUseCase: GetPhotosUseCase
 ) : Factory<DetailViewModel> {
     override fun create(): DetailViewModel {
-            return DetailViewModel(repository)
+            return DetailViewModel(fetchPhotosUseCase, getPhotosUseCase)
     }
 }

@@ -1,8 +1,9 @@
 package com.example.photoapp.appContainer
 
-import com.example.data.repository.PhotosRepository
+import com.example.interactors.FetchPhotosUseCase
+import com.example.interactors.GetPhotosUseCase
 import com.example.photoapp.overview.OverviewViewModelFactory
 
-class OverviewContainer(photosRepository: PhotosRepository) {
-    val overviewViewModelFactory = OverviewViewModelFactory(photosRepository)
+class OverviewContainer(fetchPhotosUseCase: FetchPhotosUseCase, getPhotosUseCase: GetPhotosUseCase) {
+    val overviewViewModelFactory = OverviewViewModelFactory(fetchPhotosUseCase, getPhotosUseCase)
 }

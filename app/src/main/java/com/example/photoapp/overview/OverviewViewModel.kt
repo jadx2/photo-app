@@ -1,11 +1,14 @@
 package com.example.photoapp.overview
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.data.repository.PhotosRepository
+import com.example.interactors.FetchPhotosUseCase
+import com.example.interactors.GetPhotosUseCase
 import kotlinx.coroutines.launch
 
-class OverviewViewModel(private val photosRepository: PhotosRepository) : ViewModel() {
+class OverviewViewModel(
+    private val fetchPhotosUseCase: FetchPhotosUseCase,
+    getPhotosUseCase: GetPhotosUseCase
+) : ViewModel() {
 
     private val _navigateToSelectedPhoto = MutableLiveData<Int?>()
     val navigateToSelectedPhoto: LiveData<Int?>
@@ -17,7 +20,7 @@ class OverviewViewModel(private val photosRepository: PhotosRepository) : ViewMo
 
     fun fetchPhotos() {
         viewModelScope.launch {
-            photosRepository.fetchPhotos()
+            fetchPhotosUseCase.invoke()
         }
     }
 
@@ -25,7 +28,7 @@ class OverviewViewModel(private val photosRepository: PhotosRepository) : ViewMo
      * Fetches the photos from repository
      */
 
-    val photos = photosRepository.photos
+    val photos = getPhotosUseCase.invoke()
 
     fun displayPhotoDetails(photoPosition: Int) {
         _navigateToSelectedPhoto.value = photoPosition

@@ -1,8 +1,9 @@
 package com.example.photoapp.appContainer
 
-import com.example.data.repository.PhotosRepository
+import com.example.interactors.FetchPhotosUseCase
+import com.example.interactors.GetPhotosUseCase
 import com.example.photoapp.detail.DetailViewModelFactory
 
-class DetailViewContainer(photosRepository: PhotosRepository) {
-    val detailViewModelFactory = DetailViewModelFactory(photosRepository)
+class DetailViewContainer(fetchPhotosUseCase: FetchPhotosUseCase,getPhotosUseCase: GetPhotosUseCase ) {
+    val detailViewModelFactory = DetailViewModelFactory(fetchPhotosUseCase, getPhotosUseCase)
 }

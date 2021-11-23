@@ -1,15 +1,13 @@
 package com.example.photoapp.detail
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.database.getDatabase
-import com.example.data.network.PhotosApi
-import com.example.data.repository.PhotosRepository
+import com.example.interactors.FetchPhotosUseCase
+import com.example.interactors.GetPhotosUseCase
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val photosRepository: PhotosRepository) : ViewModel() {
+class DetailViewModel(private val fetchPhotosUseCase: FetchPhotosUseCase, getPhotosUseCase: GetPhotosUseCase) :
+    ViewModel() {
 
     init {
         fetchPhotos()
@@ -20,9 +18,9 @@ class DetailViewModel(private val photosRepository: PhotosRepository) : ViewMode
      */
     fun fetchPhotos() {
         viewModelScope.launch {
-            photosRepository.fetchPhotos()
+            fetchPhotosUseCase.invoke()
         }
     }
 
-    val photos = photosRepository.photos
+    val photos = getPhotosUseCase.invoke()
 }

@@ -19,8 +19,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appContainer = (application as MyApplication).appContainer
-        appContainer.overviewContainer = OverviewContainer(appContainer.photosRepository)
-        appContainer.detailViewContainer = DetailViewContainer(appContainer.photosRepository)
+        appContainer.overviewContainer =
+            OverviewContainer(appContainer.fetchPhotosUseCase, appContainer.getPhotosUseCase)
+        appContainer.detailViewContainer =
+            DetailViewContainer(appContainer.fetchPhotosUseCase, appContainer.getPhotosUseCase)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment

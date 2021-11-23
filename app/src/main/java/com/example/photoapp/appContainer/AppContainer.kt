@@ -1,13 +1,14 @@
 package com.example.photoapp.appContainer
 
-import android.content.Context
 import com.example.data.database.PhotosDatabase
-import com.example.data.database.getDatabase
-import com.example.data.network.PhotosApi
-import com.example.data.repository.PhotosRepository
+import com.example.data.repository.RepositoryImpl
+import com.example.interactors.FetchPhotosUseCase
+import com.example.interactors.GetPhotosUseCase
 
 class AppContainer(database: PhotosDatabase) {
-    val photosRepository = PhotosRepository(database)
+    private val repository = RepositoryImpl(database)
+    val fetchPhotosUseCase = FetchPhotosUseCase(repository)
+    val getPhotosUseCase = GetPhotosUseCase(repository)
 
     var overviewContainer: OverviewContainer? = null
     var detailViewContainer: DetailViewContainer? = null

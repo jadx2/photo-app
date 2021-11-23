@@ -1,17 +1,17 @@
 package com.example.data.repository
 
 import android.util.Log
-import com.example.data.database.Photo
+import androidx.lifecycle.LiveData
 import com.example.data.database.PhotosDatabase
 import com.example.data.network.PhotosApi
+import com.example.domain.Photo
+import com.example.domain.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class PhotosRepository(private val database: PhotosDatabase) {
-    val photos = database.photosDao().getPhotos()
-
-    suspend fun fetchPhotos() {
+class RepositoryImpl(private val database: PhotosDatabase) : Repository {
+    override suspend fun fetchPhotos() {
         withContext(Dispatchers.IO) {
             try {
                 val photos = PhotosApi.retrofitService.getPhotos().take(25)
@@ -25,4 +25,7 @@ class PhotosRepository(private val database: PhotosDatabase) {
         }
     }
 
+    override fun getPhotos(): LiveData<List<Photo>> {
+        return database.photosDao().getPhotos()
+    }
 }

@@ -7,18 +7,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.data.database.Photo
+import com.example.domain.Photo
 import com.example.photoapp.databinding.DetailListItemBinding
 
 class ViewHolder(private val binding: DetailListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(photo: Photo) {
+    fun bind(photo: com.example.domain.Photo) {
         binding.photo = photo
         binding.executePendingBindings()
     }
 }
 
-class DetailAdapter() : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
+class DetailAdapter() : ListAdapter<com.example.domain.Photo, ViewHolder>(PhotosDiffCallback()) {
 
     /***
      * Verifies if the adapter is ready
@@ -44,12 +44,12 @@ class DetailAdapter() : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
     }
 }
 
-class PhotosDiffCallback : DiffUtil.ItemCallback<Photo>() {
-    override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+class PhotosDiffCallback : DiffUtil.ItemCallback<com.example.domain.Photo>() {
+    override fun areItemsTheSame(oldItem: com.example.domain.Photo, newItem: com.example.domain.Photo): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+    override fun areContentsTheSame(oldItem: com.example.domain.Photo, newItem: com.example.domain.Photo): Boolean {
         return oldItem == newItem
     }
 }
