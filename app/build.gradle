@@ -45,7 +45,6 @@ dependencies {
     // Module Dependencies
     implementation project(":data")
     implementation project(":domain")
-    implementation project(":interactors")
 
     // Room
     implementation "androidx.room:room-ktx:$room_version"
