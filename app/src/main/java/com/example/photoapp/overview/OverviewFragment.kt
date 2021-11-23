@@ -1,35 +1,32 @@
 package com.example.photoapp.overview
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.photoapp.MainActivity
 import com.example.photoapp.databinding.FragmentOverviewBinding
 
 class OverviewFragment : Fragment() {
 
-    lateinit var viewModel: OverviewViewModel
+    var viewModel: OverviewViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentOverviewBinding.inflate(inflater)
-        val application = requireNotNull(this.activity).application
-        val viewModelFactory = OverviewViewModelFactory(application)
-        viewModel = ViewModelProvider(this, viewModelFactory)[OverviewViewModel::class.java]
+        viewModel =
+            (requireActivity() as MainActivity).appContainer.overviewContainer?.overviewViewModelFactory?.create()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         val adapter = OverviewAdapter(OnClickListener {
-            viewModel.displayPhotoDetails(it)
+            viewModel?.displayPhotoDetails(it)
         })
         binding.photosView.adapter = adapter
-        viewModel.photos.observe(viewLifecycleOwner, {
+        viewModel?.photos?.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
             }
@@ -38,15 +35,15 @@ class OverviewFragment : Fragment() {
         /***
          * Controls navigation passing the current photo position
          */
-        viewModel.navigateToSelectedPhoto.observe(viewLifecycleOwner, {
+        viewModel?.navigateToSelectedPhoto?.observe(viewLifecycleOwner, {
             if (it != null) {
                 this.findNavController()
                     .navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
-                viewModel.displayPhotoDetailsComplete()
+                viewModel?.displayPhotoDetailsComplete()
             }
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.fetchPhotos()
+            viewModel?.fetchPhotos()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 

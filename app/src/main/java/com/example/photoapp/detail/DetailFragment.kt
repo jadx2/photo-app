@@ -5,34 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.example.photoapp.MainActivity
 import com.example.photoapp.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
 
-    lateinit var viewModel: DetailViewModel
-    lateinit var binding: FragmentDetailBinding
+    var viewModel: DetailViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        binding = FragmentDetailBinding.inflate(inflater)
-        val application = requireNotNull(this.activity).application
-
+    ): View {
+        val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
         var photoPosition: Int? = DetailFragmentArgs.fromBundle(requireArguments()).photoPosition
-
-        val viewModelFactory = DetailViewModelFactory(application)
-        viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
-
+        viewModel =
+            (requireActivity() as MainActivity).appContainer.detailViewContainer?.detailViewModelFactory?.create()
         val adapter = DetailAdapter()
         binding.detailView.adapter = adapter
-        viewModel.photos.observe(viewLifecycleOwner, {
+        viewModel?.photos?.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
             }
@@ -50,7 +43,7 @@ class DetailFragment : Fragment() {
         /***
         Checks if the adapter is ready to scroll to the desire position
          *
-          */
+         */
         adapter.isReady.observe(viewLifecycleOwner, {
             if (it == true) {
                 photoPosition?.let {
@@ -61,7 +54,7 @@ class DetailFragment : Fragment() {
         })
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.fetchPhotos()
+            viewModel?.fetchPhotos()
             binding.swipeRefreshLayout.isRefreshing = false
         }
         return binding.root

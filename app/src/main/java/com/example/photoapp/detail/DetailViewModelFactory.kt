@@ -1,17 +1,12 @@
 package com.example.photoapp.detail
 
-import android.app.Application
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import com.example.data.repository.PhotosRepository
+import com.example.photoapp.Factory
 
 class DetailViewModelFactory(
-    private val application: Application
-) : ViewModelProvider.Factory {
-    @Suppress("uncheck_cast")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-            return DetailViewModel(application) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
+    private val repository: PhotosRepository
+) : Factory<DetailViewModel> {
+    override fun create(): DetailViewModel {
+            return DetailViewModel(repository)
     }
 }

@@ -1,18 +1,11 @@
 package com.example.photoapp.overview
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.data.database.getDatabase
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.data.repository.PhotosRepository
 import kotlinx.coroutines.launch
 
-class OverviewViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val database = getDatabase(application)
-    private val photosRepository = PhotosRepository(database)
+class OverviewViewModel(private val photosRepository: PhotosRepository) : ViewModel() {
 
     private val _navigateToSelectedPhoto = MutableLiveData<Int?>()
     val navigateToSelectedPhoto: LiveData<Int?>
@@ -22,14 +15,15 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
         fetchPhotos()
     }
 
-    /***
-     * Fetches the photos from repository
-     */
     fun fetchPhotos() {
         viewModelScope.launch {
             photosRepository.fetchPhotos()
         }
     }
+
+    /***
+     * Fetches the photos from repository
+     */
 
     val photos = photosRepository.photos
 
