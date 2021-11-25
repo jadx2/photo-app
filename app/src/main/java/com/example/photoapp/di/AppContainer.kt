@@ -1,4 +1,4 @@
-package com.example.photoapp.appContainer
+package com.example.photoapp.di
 
 import com.example.data.database.PhotosDatabase
 import com.example.data.repository.RepositoryImpl

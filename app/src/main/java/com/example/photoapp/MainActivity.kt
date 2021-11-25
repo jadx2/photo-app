@@ -6,9 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.photoapp.appContainer.AppContainer
-import com.example.photoapp.appContainer.DetailViewContainer
-import com.example.photoapp.appContainer.OverviewContainer
+import com.example.photoapp.di.AppContainer
+import com.example.photoapp.di.DetailViewContainer
+import com.example.photoapp.di.OverviewContainer
 import com.example.photoapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

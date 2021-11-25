@@ -1,4 +1,4 @@
-package com.example.photoapp.appContainer
+package com.example.photoapp.di
 
 import com.example.interactors.FetchPhotosUseCase
 import com.example.interactors.GetPhotosUseCase
