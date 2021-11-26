@@ -10,18 +10,3 @@ import com.example.domain.Photo
 abstract class PhotosDatabase : RoomDatabase() {
     abstract fun photosDao(): PhotosDao
 }
-
-private lateinit var INSTANCE: PhotosDatabase
-
-fun getDatabase(context: Context): PhotosDatabase {
-    synchronized(PhotosDatabase::class.java) {
-        if (!::INSTANCE.isInitialized) {
-            INSTANCE = Room.databaseBuilder(
-                context.applicationContext,
-                PhotosDatabase::class.java,
-                "photos"
-            ).build()
-        }
-    }
-    return INSTANCE
-}

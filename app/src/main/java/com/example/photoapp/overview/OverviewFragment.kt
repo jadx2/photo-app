@@ -6,27 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.photoapp.MainActivity
 import com.example.photoapp.databinding.FragmentOverviewBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinComponent
 
-class OverviewFragment : Fragment() {
+class OverviewFragment : Fragment(), KoinComponent {
 
-    var viewModel: OverviewViewModel? = null
+    val viewModel: OverviewViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentOverviewBinding.inflate(inflater)
-        viewModel =
-            (requireActivity() as MainActivity).appContainer.overviewContainer?.overviewViewModelFactory?.create()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         val adapter = OverviewAdapter(OnClickListener {
-            viewModel?.displayPhotoDetails(it)
+            viewModel.displayPhotoDetails(it)
         })
         binding.photosView.adapter = adapter
-        viewModel?.photos?.observe(viewLifecycleOwner, {
+        viewModel.photos.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
             }
@@ -35,15 +34,15 @@ class OverviewFragment : Fragment() {
         /***
          * Controls navigation passing the current photo position
          */
-        viewModel?.navigateToSelectedPhoto?.observe(viewLifecycleOwner, {
+        viewModel.navigateToSelectedPhoto.observe(viewLifecycleOwner, {
             if (it != null) {
                 this.findNavController()
                     .navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
-                viewModel?.displayPhotoDetailsComplete()
+                viewModel.displayPhotoDetailsComplete()
             }
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel?.fetchPhotos()
+            viewModel.fetchPhotos()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 

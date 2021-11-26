@@ -6,23 +6,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.photoapp.di.AppContainer
-import com.example.photoapp.di.DetailViewContainer
-import com.example.photoapp.di.OverviewContainer
 import com.example.photoapp.databinding.ActivityMainBinding
+import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    lateinit var appContainer: AppContainer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appContainer = (application as MyApplication).appContainer
-        appContainer.overviewContainer =
-            OverviewContainer(appContainer.fetchPhotosUseCase, appContainer.getPhotosUseCase)
-        appContainer.detailViewContainer =
-            DetailViewContainer(appContainer.fetchPhotosUseCase, appContainer.getPhotosUseCase)
+        setupKoinFragmentFactory()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
@@ -33,11 +27,5 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
         return navController.navigateUp()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        appContainer.overviewContainer = null
-        appContainer.detailViewContainer = null
     }
 }

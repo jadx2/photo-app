@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import com.example.photoapp.MainActivity
 import com.example.photoapp.databinding.FragmentDetailBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : Fragment() {
 
-    var viewModel: DetailViewModel? = null
+    val viewModel: DetailViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,11 +21,9 @@ class DetailFragment : Fragment() {
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
         var photoPosition: Int? = DetailFragmentArgs.fromBundle(requireArguments()).photoPosition
-        viewModel =
-            (requireActivity() as MainActivity).appContainer.detailViewContainer?.detailViewModelFactory?.create()
         val adapter = DetailAdapter()
         binding.detailView.adapter = adapter
-        viewModel?.photos?.observe(viewLifecycleOwner, {
+        viewModel.photos.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
             }
@@ -54,7 +52,7 @@ class DetailFragment : Fragment() {
         })
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel?.fetchPhotos()
+            viewModel.fetchPhotos()
             binding.swipeRefreshLayout.isRefreshing = false
         }
         return binding.root
