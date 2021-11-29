@@ -1,4 +1,4 @@
-package com.example.photoapp.overview
+package com.example.photoapp
 
 import android.widget.ImageView
 import android.widget.TextView

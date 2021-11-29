@@ -12,13 +12,13 @@ import com.example.photoapp.databinding.DetailListItemBinding
 
 class ViewHolder(private val binding: DetailListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(photo: com.example.domain.Photo) {
+    fun bind(photo: Photo) {
         binding.photo = photo
         binding.executePendingBindings()
     }
 }
 
-class DetailAdapter() : ListAdapter<com.example.domain.Photo, ViewHolder>(PhotosDiffCallback()) {
+class DetailAdapter() : ListAdapter<Photo, ViewHolder>(PhotosDiffCallback()) {
 
     /***
      * Verifies if the adapter is ready
@@ -38,18 +38,14 @@ class DetailAdapter() : ListAdapter<com.example.domain.Photo, ViewHolder>(Photos
         holder.bind(photo)
         _isReady.value = true
     }
-
-    fun setToFalse() {
-        _isReady.value = false
-    }
 }
 
-class PhotosDiffCallback : DiffUtil.ItemCallback<com.example.domain.Photo>() {
-    override fun areItemsTheSame(oldItem: com.example.domain.Photo, newItem: com.example.domain.Photo): Boolean {
+class PhotosDiffCallback : DiffUtil.ItemCallback<Photo>() {
+    override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: com.example.domain.Photo, newItem: com.example.domain.Photo): Boolean {
+    override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
         return oldItem == newItem
     }
 }
