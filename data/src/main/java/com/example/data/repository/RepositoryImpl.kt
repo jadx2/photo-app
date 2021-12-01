@@ -7,11 +7,13 @@ import com.example.domain.Photo
 import com.example.domain.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.koin.core.component.KoinComponent
 import java.lang.Exception
+import javax.inject.Inject
 
-class RepositoryImpl(private val api: ApiService, private val photosDao: PhotosDao) : Repository,
-    KoinComponent {
+class RepositoryImpl @Inject constructor(
+    private val api: ApiService,
+    private val photosDao: PhotosDao
+) : Repository {
 
     override suspend fun fetchPhotos() {
         withContext(Dispatchers.IO) {

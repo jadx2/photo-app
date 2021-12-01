@@ -7,9 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.Photo
 import com.example.interactors.FetchPhotosUseCase
 import com.example.interactors.GetPhotosUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailViewModel(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
     private val fetchPhotosUseCase: FetchPhotosUseCase,
     private val getPhotosUseCase: GetPhotosUseCase
 ) :

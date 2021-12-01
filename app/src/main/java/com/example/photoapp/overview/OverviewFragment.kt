@@ -5,14 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.photoapp.databinding.FragmentOverviewBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.component.KoinComponent
+import dagger.hilt.android.AndroidEntryPoint
 
-class OverviewFragment : Fragment(), KoinComponent {
+@AndroidEntryPoint
+class OverviewFragment : Fragment() {
 
-    val viewModel: OverviewViewModel by viewModel()
+    val viewModel: OverviewViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

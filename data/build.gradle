@@ -65,7 +65,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit: $version_retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$gson_version"
 
-    // Koin
-    implementation "io.insert-koin:koin-core:$koin_version"
-    implementation "io.insert-koin:koin-android:$koin_version"
+    // Javax
+    implementation 'javax.inject:javax.inject:1'
 }

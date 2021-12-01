@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -85,7 +86,10 @@ dependencies {
     // Swipe Refresh Layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:$swipe_version")
 
-    // Koin
-    implementation "io.insert-koin:koin-core:$koin_version"
-    implementation "io.insert-koin:koin-android:$koin_version"
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Gson
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
 }

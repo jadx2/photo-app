@@ -7,8 +7,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.photoapp.databinding.ActivityMainBinding
-import org.koin.androidx.fragment.android.setupKoinFragmentFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
@@ -16,7 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupKoinFragmentFactory()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
